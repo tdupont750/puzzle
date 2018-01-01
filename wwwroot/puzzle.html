@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	
+	<title>Puzzle Game</title>
+	
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
+	<link href="css/puzzle.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container jumbotron">
+	<div class="row">
+		<div class="col">
+			<h1>Puzzle Game</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<h2>Score</h2>
+		</div>
+		<div class="col">
+			<h2>Combo</h2>
+		</div>
+		<div class="col">
+			<h2>Time</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<h2><span id="score-box">0</span></h2>
+		</div>
+		<div class="col">
+			<h2><span id="combo-box">0</span></h2>
+		</div>
+		<div class="col">
+			<h2><span id="time-box">...</span></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<h3><span id="score-box-diff">0</span></h3>
+		</div>
+		<div class="col">
+			<h3><span id="combo-box-diff">0</span></h3>
+		</div>
+		<div class="col">
+			&nbsp;
+		</div>
+	</div>
+</div>
+
+<div class="container boxes" id="board">
+	<div class="row">
+		<div class="col"></div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<hr>
+		</div>
+	</div>
+</div>
+
+<div class="container boxes" id="draw">
+	<div class="row">
+		<div class="col"></div>
+		<div class="col"></div>
+		<div class="col"></div>
+	</div>
+</div>
+
+<script src="js/hammer.js" type="text/javascript"></script>
+<script src="js/helpers.js" type="text/javascript"></script>
+<script src="js/dom.js" type="text/javascript"></script>
+<script src="js/gamedata.js" type="text/javascript"></script>
+<script src="js/boardstate.js" type="text/javascript"></script>
+<script src="js/boardservice.js" type="text/javascript"></script>
+<script src="js/puzzle.js" type="text/javascript"></script>
+
+<script>
+    window.onload = function () {
+        const help = Helpers(),
+            data = GameData(help),
+        	boardState = BoardState(help,  data),
+            boardService = BoardService(help, data, boardState),
+            puzzle = Puzzle(help,  boardService, boardState);
+
+        puzzle.run();
+    };
+</script>
+</body>
+</html>

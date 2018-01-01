@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-weight: 900;
+    src: url("../webfonts/fa-solid-900.eot");
+    src: url("../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.woff") format("woff"), url("../webfonts/fa-solid-900.ttf") format("truetype"), url("../webfonts/fa-solid-900.svg#fontawesome") format("svg");
+}
+
+h1 {
+    font-size: 1.75em;
+}
+h2 {
+    font-size: 1.25em;
+}
+h3 {
+    font-size: 1em;
+    font-style: italic;
+}
+
+.container.jumbotron {
+    margin: 0px;
+    margin-bottom: 5px;
+    padding: 0px;
+}
+.container.jumbotron .col {
+    text-align: center;
+}
+
+.container .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.boxes {
+    width: 70%;
+}
+.boxes .col {
+    margin: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 2.25em;
+
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.boxes .col:before {
+    opacity: .8;
+}
+.boxes .col:not(.card-set) {
+    background-color: lightgray;
+}
+.boxes .col:not(.card-set):before {
+    content: '.';
+    opacity: 0;
+}
+
+#board {
+    margin-top: 50px;
+}
+
+#draw .col {
+    border-style: dashed;
+    border-color: rgba(0, 0, 0, .2);
+    border-width: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#draw .col.selected {
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .7);
+}
+
+.card-red {
+    background-color: lightcoral;
+}
+.card-green {
+    background-color: lightgreen;
+}
+.card-blue {
+    background-color: lightblue;
+}
+
+.card-rock:before {
+    content: "\f3ed";
+}
+.card-paper:before {
+    content: "\f0e7";
+}
+.card-scissors:before {
+    content: "\f0e3";
+}
