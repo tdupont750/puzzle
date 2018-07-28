@@ -16,7 +16,8 @@ const GameData = function createGameData(help) {
     return help.makeConst({
         Color,
         Type,
-        makeCard
+        makeCard,
+        matchCount: 3
     });
 
     function makeCard() {

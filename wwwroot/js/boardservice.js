@@ -35,31 +35,56 @@ const BoardService = function createBoardService(help, data, state) {
         let card = state.getCard(el);
         if (card === null) {
             return;
-        }
-
-        let row = getRow(el),
-            col = getCol(el),
-            isRowMatch = help.all(row, isColorMatch),
-            isColMatch = help.all(col, isColorMatch);
+        }        
         
+        let i = help.indexOf(state.boardCards, el),
+            row = getRow(i),
+            rowMatch = getMatch(getRowI(i), row),
+            isRowMatch = rowMatch.length >= data.matchCount,
+            col = getCol(i),
+            colMatch = getMatch(getColI(i), col),
+            isColMatch = colMatch.length >= data.matchCount;
+    
         if (isRowMatch && isColMatch) {
-            state.addCombo(3, 9);
+            state.addCombo(rowMatch.length + colMatch.length);
         }
-        else if (isRowMatch || isColMatch) {
-            state.addCombo(1, 3);
+        else if (isRowMatch) {
+            state.addCombo(rowMatch.length);
+        }
+        else if (isColMatch) {
+            state.addCombo(colMatch.length);
         }
 
         if (isRowMatch) {
-            makeCards(row);
+            makeCards(rowMatch);
         }
 
         if (isColMatch) {
-            makeCards(col);
+            makeCards(colMatch);
         }
-
-        function isColorMatch(e) {
-            let c = state.getCard(e);
-            return c !== null && c.color == card.color;
+        
+        function getMatch(i, array) {
+            let match = [array[i]];
+            
+            for(let j = i - 1; j >= 0; j--) {
+                let c = state.getCard(array[j]);
+                if (c !== null && c.color == card.color) {
+                    match.unshift(array[j]);
+                } else {
+                    break;
+                }
+            }
+            
+            for(let j = i + 1; j < array.length; j++) {
+                let c = state.getCard(array[j]);
+                if (c !== null && c.color == card.color) {
+                    match.push(array[j]);
+                } else {
+                    break;
+                }
+            }
+            
+            return match;
         }
     }
 
@@ -73,14 +98,7 @@ const BoardService = function createBoardService(help, data, state) {
         }
 
         if (card.type != elCard.type) {
-            let diff = state.getDiff();
-            if (diff > 0) {
-                diff = -1;
-            } else {
-                diff *= 2;
-            }
-            
-            state.subtractCombo(diff);
+            state.subtractCombo();
         }
 
         state.animate(el, 'fadeout', 'fadeinup', function() {
@@ -102,33 +120,29 @@ const BoardService = function createBoardService(help, data, state) {
             state.setSelected(card === null ? null : target);
         }
     }
-
-    function getRow(el) {
-        let i = help.indexOf(state.boardCards, el);
-
-        if (i < 3) {
-            return [state.boardCards[0], state.boardCards[1], state.boardCards[2]];
-        }
-        else if (i < 6) {
-            return [state.boardCards[3], state.boardCards[4], state.boardCards[5]];
-        }
-        else {
-            return [state.boardCards[6], state.boardCards[7], state.boardCards[8]];
-        }
+    
+    function getRowI(i) {
+        return i % state.gridSize;
     }
-
-    function getCol(el) {
-        let i = help.indexOf(state.boardCards, el) % 3;
-
-        if (i === 0) {
-            return [state.boardCards[0], state.boardCards[3], state.boardCards[6]];
+    
+    function getRow(i) {
+        let start = getColI(i) * state.gridSize;
+        return state.boardCards.slice(start, start + state.gridSize);
+    }
+    
+    function getColI(i) {
+        return Math.floor(i / state.gridSize);
+    }
+    
+    function getCol(i) {
+        let rowI = getRowI(i),
+            array = [];
+            
+        for(let j = 0; j < state.gridSize; j++) {
+            array.push(state.boardCards[rowI + (state.gridSize * j)]);
         }
-        else if (i === 1) {
-            return [state.boardCards[1], state.boardCards[4], state.boardCards[7]];
-        }
-        else {
-            return [state.boardCards[2], state.boardCards[5], state.boardCards[8]];
-        }
+        
+        return array;
     }
 
     function spawnCard() {

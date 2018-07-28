@@ -17,8 +17,9 @@ const BoardState = function createBoardState(help, data) {
         selected = null;
 
     const self = help.makeConst({
-        drawCards: document.querySelectorAll('#draw .col'),
-        boardCards: document.querySelectorAll('#board .col'),
+        drawCards: Array.from(document.querySelectorAll('#draw .col')),
+        boardCards: Array.from(document.querySelectorAll('#board .col')),
+        gridSize: document.querySelectorAll('#board > .row:first-child > .col').length,
         getScore,
         getCombo,
         getDiff,
@@ -72,23 +73,31 @@ const BoardState = function createBoardState(help, data) {
         return comboDiff;
     }
     
-    function addCombo(diff, multiplier) {
-        comboDiff = diff;
-        combo += comboDiff;
-        
-        scoreDiff = multiplier * combo;
+    function addCombo(count) {
+        combo = count + comboDiff;        
+        scoreDiff = fib(combo);
         score += scoreDiff;
+        comboDiff = 0;
         
         redraw();
+        
+        function fib(i){
+            var total = 1,
+                last = 0,
+                temp = 0;
+
+            while (i-- >= 0){
+                temp = total;
+                total += last;
+                last = temp;
+            }
+
+            return total;
+        }
     }
 
-    function subtractCombo(diff) {
-        comboDiff = diff;
-        combo += comboDiff;
-        if (combo < 0) {
-            combo = 0;
-        }
-
+    function subtractCombo() {
+        comboDiff--;
         redraw();
     }
 
