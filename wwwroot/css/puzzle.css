@@ -32,7 +32,7 @@ h3 {
 }
 
 .boxes {
-    width: 70%;
+    width: 85%;
 }
 .boxes .col {
     margin: 5px;
@@ -72,6 +72,8 @@ h3 {
     border-width: 5px;
     padding-top: 15px;
     padding-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 #draw .col.selected {
     border-style: solid;
