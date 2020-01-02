@@ -17,6 +17,10 @@ h3 {
     font-style: italic;
 }
 
+.container.boxes {
+    padding-right: 0px;
+    padding-left: 0px;
+}
 .container.jumbotron {
     margin: 0px;
     margin-bottom: 5px;
@@ -35,9 +39,13 @@ h3 {
     width: 85%;
 }
 .boxes .col {
+    border-width: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    
     margin: 5px;
-    padding-top: 20px;
-    padding-bottom: 20px;
     text-align: center;
     font-size: 2.25em;
 
@@ -67,21 +75,16 @@ h3 {
 }
 #board .col {
     border-style: solid;
-    border-width: 5px;
     border-color: rgba(0, 0, 0, .0);
 }
 #board .col.selected {
+    border-style: solid;
     border-color: rgba(255, 193, 0, .7);
 }
 
 #draw .col {
     border-style: dashed;
     border-color: rgba(0, 0, 0, .2);
-    border-width: 5px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-right: 10px;
-    padding-left: 10px;
 }
 #draw .col.selected {
     border-style: solid;
