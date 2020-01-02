@@ -31,7 +31,7 @@ const Puzzle = function createPuzzle(help, service, state) {
         time--;
         timeBox.innerText = time;
 
-        if (time == 0) {
+        if (time === 0) {
             window.alert('End of Game - Score: ' + state.getScore());
             window.location.reload();
         }
@@ -44,7 +44,12 @@ const Puzzle = function createPuzzle(help, service, state) {
 
         for (let i = 0; i < state.boardCards.length; i++) {
             new Hammer(state.boardCards[i]).on('tap press pan pinch rotate swipe', onBoardClick);
+            state.boardCards[i].onmousedown = function() { service.onMovement(this, true);  };
+            state.boardCards[i].onmouseover = function() { service.onMovement(this, false);  };
+            // state.boardCards[i].onmouseup =   function() { service.onMovement(this, false); };
         }
+        
+        document.onmouseup = function() { service.onMovement(null, null); };
         
         function onDrawClick(e) {
             service.drawClick(e.target);

@@ -31,19 +31,38 @@ const BoardState = function createBoardState(help, data) {
         getCard,
         removeCard,
         animate,
-        init
+        init/*,
+        getGrid,
+        getRowIndex,
+        getColIndex*/
     });
 
     return self;
 
     function init() {
-        for (var i=0; i<self.drawCards.length; i++) {
+        for (let i=0; i<self.drawCards.length; i++) {
             self.drawCards[i].classList.add('animated');
         }
-        for (var i=0; i<self.boardCards.length; i++) {
+        for (let i=0; i<self.boardCards.length; i++) {
             self.boardCards[i].classList.add('animated');
         }
     }
+    
+    /*function getGrid() {
+        let grid = [self.gridSize][self.gridSize];
+        for (let i = 0; i < self.drawCards; i++) {
+            grid[getRowIndex(i)][getColIndex(i)] = self.drawCards[i];
+        }
+        return grid;
+    }
+
+    function getRowIndex(i) {
+        return i % state.gridSize;
+    }
+
+    function getColIndex(i) {
+        return Math.floor(i / state.gridSize);
+    }*/
     
     function getSelected() {
         return selected;
@@ -82,7 +101,7 @@ const BoardState = function createBoardState(help, data) {
         redraw();
         
         function fib(i){
-            var total = 1,
+            let total = 1,
                 last = 0,
                 temp = 0;
 
