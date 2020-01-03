@@ -7,78 +7,54 @@
 }
 
 h1 {
-    font-size: 1.75em;
-}
-h2 {
-    font-size: 1.25em;
-}
-h3 {
-    font-size: 1em;
-    font-style: italic;
-}
-
-.container.boxes {
-    padding-right: 0px;
-    padding-left: 0px;
-}
-.container.jumbotron {
-    margin: 0px;
-    margin-bottom: 5px;
-    padding: 0px;
-}
-.container.jumbotron .col {
+    margin: 0;
     text-align: center;
 }
-
-.container .row {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.col {
+.header {
     display: inline-block;
 }
+.header.time {
+    float: right;
+}
 
+/* BOXES */
+
+.boxes {
+    margin: auto;
+    width: fit-content;
+}
 .boxes .row {
     font-size: 0;
 }
-
-/*.boxes {
-    width: 85%;
-}*/
 .boxes .col {
+    display: inline-block;
     border-width: 5px;
-    padding: 10px;
-    width: 40px;
-    height: 40px;
+    margin: 1px;
+    padding: 14px 10px 10px 10px;
+    width: 45px;
+    height: 45px;
     
-    margin: 0;
     text-align: center;
     font-size: 36px;
-
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
     font-style: normal;
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-}
-.boxes .col:before {
-    opacity: .8;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 .boxes .col:not(.card-set) {
     background-color: lightgray;
 }
-/*.boxes .col:not(.card-set):before {
-    content: '.';
-    opacity: 0;
-}*/
+.boxes .col:not(.card-set):before {
+    color: lightgray;
+    content: "x";
+}
 
-/*#board {
-    margin-top: 50px;
-}*/
+/* BOARD */
+
 #board .col {
     border-style: solid;
     border-color: rgba(0, 0, 0, .0);
@@ -87,6 +63,8 @@ h3 {
     border-style: solid;
     border-color: rgba(255, 193, 0, .7);
 }
+
+/* DRAW */
 
 #draw .col {
     border-style: dashed;
@@ -97,6 +75,8 @@ h3 {
     border-color: rgba(0, 0, 0, .7);
 }
 
+/* CARD COLORS */
+
 .card-red {
     background-color: lightcoral;
 }
@@ -106,6 +86,8 @@ h3 {
 .card-blue {
     background-color: lightblue;
 }
+
+/* CARD TYPES */
 
 .card-rock:before {
     content: "\f3ed";

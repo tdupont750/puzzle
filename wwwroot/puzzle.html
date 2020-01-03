@@ -11,48 +11,22 @@
 </head>
 <body>
 
-<div class="container jumbotron">
-	<div class="row">
-		<div class="col">
-			<h1>Puzzle Game</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			<span>Score</span>
-		</div>
-		<div class="col">
-			<span>Combo</span>
-		</div>
-		<div class="col">
-			<span>Time</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			<span><span id="score-box">0</span></span>
-		</div>
-		<div class="col">
-			<span><span id="combo-box">0</span></span>
-		</div>
-		<div class="col">
-			<span><span id="time-box">...</span></span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			<h3><span id="score-box-diff">0</span></h3>
-		</div>
-		<div class="col">
-			<h3><span id="combo-box-diff">0</span></h3>
-		</div>
-		<div class="col">
-			&nbsp;
-		</div>
-	</div>
+<h1>Puzzle Game</h1>
+
+<h3 class="header time">
+	<span>Time</span>: <span id="time-box">0</span>
+</h3>
+
+<h3 class="header score">
+	<span>Score</span>: <span id="score-box">0</span> (<span id="score-box-diff">0</span>)
+</h3>
+
+<div style="display: none">
+	<span><span id="combo-box">0</span></span>
+	<span id="combo-box-diff">0</span>
 </div>
 
-<div class="container boxes" id="board">
+<div class="boxes" id="board">
 	<div class="row">
 		<div class="col"></div>
 		<div class="col"></div>
@@ -81,7 +55,7 @@
 
 <hr>
 
-<div class="container boxes" id="draw">
+<div class="boxes" id="draw">
 	<div class="row">
 		<div class="col"></div>
 		<div class="col"></div>
