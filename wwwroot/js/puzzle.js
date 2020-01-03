@@ -36,20 +36,46 @@ const Puzzle = function createPuzzle(help, service, state) {
             window.location.reload();
         }
     }
-
+        
     function setupClicks() {
+        
         for (let i = 0; i < state.drawCards.length; i++) {
             new Hammer(state.drawCards[i]).on('tap press pan pinch rotate swipe', onDrawClick);
         }
 
+        let board = document.getElementById('board');
+
+        board.addEventListener("touchstart", function(e) {
+            console.log('touchstart');
+            let el = getElFromTouch(e);
+            service.onMovement(el, true);
+        });
+
+        board.addEventListener("touchend", function(e) {
+            console.log('touchend');
+            service.onMovement(null, null);
+        });
+
+        window.lastElement = {};
+        
+        board.addEventListener("touchmove", function(e) {
+            e.preventDefault();
+            let el = getElFromTouch(e);
+            if (el && window.lastElement !== el && el.classList.contains('col')) {
+                window.lastElement = el;
+                console.log('touchmove');
+                service.onMovement(el, false);
+            }
+        });
+        
+        function getElFromTouch(e) {
+            let touch = e.touches[0];
+            return document.elementFromPoint(touch.clientX, touch.clientY);
+        }
+
         for (let i = 0; i < state.boardCards.length; i++) {
             new Hammer(state.boardCards[i]).on('tap press pan pinch rotate swipe', onBoardClick);
-            state.boardCards[i].onmousedown = function() { service.onMovement(this, true);  };
-            state.boardCards[i].onmouseover = function() { service.onMovement(this, false);  };
-            // state.boardCards[i].onmouseup =   function() { service.onMovement(this, false); };
         }
-        
-        document.onmouseup = function() { service.onMovement(null, null); };
         
         function onDrawClick(e) {
             service.drawClick(e.target);
