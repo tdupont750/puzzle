@@ -3,7 +3,7 @@ const Puzzle = function createPuzzle(help, service, state) {
     
     const timeBox = document.getElementById('time-box');
     
-    let time = window.location.search.includes("short") ? 30 : 120;
+    let time = window.location.search.includes("short") ? 30 : 90;
     
     return help.makeConst({
         run
@@ -16,7 +16,7 @@ const Puzzle = function createPuzzle(help, service, state) {
         setupClicks();
 
         // Prompt user
-        window.alert('Create rows and columns of mathcing colors.\r\n\r\nPlace cards on matching icons to preserve your score multiplier.\r\n\r\nGood luck!');
+        window.alert('Trace a series of matching colors on the grid to earn points.\r\n\r\nYou may place cards from below on matching icons above.\r\n\r\nGood luck!');
         
         // Start clock
         timeBox.innerText = time;

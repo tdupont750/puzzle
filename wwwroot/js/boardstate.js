@@ -8,13 +8,15 @@ const BoardState = function createBoardState(help, data) {
         comboBox = document.getElementById('combo-box'),
         scoreBox = document.getElementById('score-box'),
         comboBoxDiff = document.getElementById('combo-box-diff'),
-        scoreBoxDiff = document.getElementById('score-box-diff');
+        scoreBoxDiff = document.getElementById('score-box-diff'),
+        flavorBox = document.getElementById('flavor-box');
 
     let combo = 0,
         comboDiff = 0,
         score = 0,
         scoreDiff = 0,
-        selected = null;
+        selected = null,
+        flavorText;
 
     const self = help.makeConst({
         drawCards: Array.from(document.querySelectorAll('#draw .col')),
@@ -93,10 +95,30 @@ const BoardState = function createBoardState(help, data) {
     }
     
     function addCombo(count) {
-        combo = count + comboDiff;        
+        /*combo = count + comboDiff;        
         scoreDiff = fib(combo);
         score += scoreDiff;
-        comboDiff = 0;
+        comboDiff = 0;*/
+        
+        scoreDiff = 0;
+        for (let i = count - 1; i > 0; i--) {
+            scoreDiff += i;
+        }
+
+        score += scoreDiff;
+
+        if (count > 8)
+            flavorText = "UNBELIEVABLE";
+        else if (count > 6)
+            flavorText = "AMAZING";
+        else if (count > 4)
+            flavorText = "Great";
+        else if (count > 3)
+            flavorText = "Good";
+        else if (count > 2)
+            flavorText = "okay";
+        else if (count > 1)
+            flavorText = "meh";
         
         redraw();
         
@@ -166,7 +188,9 @@ const BoardState = function createBoardState(help, data) {
         comboBoxDiff.innerText = (comboDiff < 0 ? '' : '+') + comboDiff;
 
         scoreBox.innerText = score;
-        scoreBoxDiff.innerText = (scoreDiff > 0 ? '+' : '') + scoreDiff;
+        scoreBoxDiff.innerText = '(+' + scoreDiff + ')';
+
+        flavorBox.innerText = flavorText;
     }
 
     function animate(el, outAnime, inAnime, func) {

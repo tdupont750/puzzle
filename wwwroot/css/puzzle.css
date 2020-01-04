@@ -11,10 +11,22 @@ h1 {
     text-align: center;
 }
 .header {
-    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-.header.time {
+.header .score {
+    float: left;
+    font-weight: bold;
+}
+.header .time {
     float: right;
+}
+.header .flavor {
+    text-align: center;
+    font-style: italic;
+}
+#score-box-diff {
+    font-weight: normal;
 }
 
 /* BOXES */

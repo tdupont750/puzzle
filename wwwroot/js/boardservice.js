@@ -50,7 +50,7 @@ const BoardService = function createBoardService(help, data, state) {
             } else {
                 // TODO PROCESS MOVE
                 console.log(selections);
-                if (selections.length > 2) {
+                if (selections.length > 1) {
                     state.addCombo(selections.length);
                     makeCards(selections);
                 }
